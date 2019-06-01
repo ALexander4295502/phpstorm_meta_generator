@@ -8,6 +8,6 @@
     "php-parser": "^3.0.0-prerelease.8"
   },
   "scripts": {
-    "generate": "node PhpStormDIScriptsGenerator.js"
+    "generate": "node index.js"
   }
 }
