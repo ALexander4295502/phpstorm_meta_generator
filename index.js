@@ -20,7 +20,7 @@ colors.setTheme({
 });
 
 const SERVICE_METHOD_NAME_REGEX = /^get(\w+)Service$/gi;
-const SERVICE_CLASS_NAME_REGEX = /^(\\|)Gh_Service_\w+$/;
+const SERVICE_CLASS_NAME_REGEX = /^(?:\\|)Gh_Service_\w+$/;
 const DI_TARGET_CLASS = [
         'Gh_Controller_Action',
         'Gh_Service_Abstract',
