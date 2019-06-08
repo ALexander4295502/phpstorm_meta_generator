@@ -50,8 +50,10 @@ class PhpStormDIScriptsGenerator {
         if (statementType === 'assign') {
             if (statement.expression.right.kind === 'call') {
                 const targetArgument = this.extractFromArrayByKind(statement.expression.right.arguments, 'string');
-                if (targetArgument) {
+                if (targetArgument && targetArgument.value.includes('Gh_Service')) {
                     return targetArgument.value;
+                } else {
+                    return null;
                 }
             } else {
                 return null;
@@ -68,19 +70,23 @@ class PhpStormDIScriptsGenerator {
 
     getServiceMethodTargetNameAndResponseServiceClass(method) {
         const methodNameExecResult = SERVICE_METHOD_NAME_REGEX.exec(method.name.name);
+        SERVICE_METHOD_NAME_REGEX.lastIndex = 0;
         if (methodNameExecResult) {
             const targetName = methodNameExecResult[1];
-            const expressionStatement = this.extractFromArrayByKind(method.body.children, 'expressionstatement');
+            const expressionStatements = this.extractFromArrayByKind(method.body.children, 'expressionstatement', true);
             const returnStatement = this.extractFromArrayByKind(method.body.children, 'return');
-            if (expressionStatement && expressionStatement.expression && expressionStatement.expression.kind === 'assign') {
-                const className = this.getResponseServiceClassFromStatement(expressionStatement, 'assign');
-                if (className) {
-                    return {
-                        targetName,
-                        className
-                    };
+            for (const expressionStatement of expressionStatements) {
+                if(expressionStatement && expressionStatement.expression && expressionStatement.expression.kind === 'assign') {
+                    const className = this.getResponseServiceClassFromStatement(expressionStatement, 'assign');
+                    if (className) {
+                        return {
+                            targetName,
+                            className
+                        };
+                    }
                 }
-            } else if (returnStatement) {
+            }
+            if (returnStatement) {
                 const className = this.getResponseServiceClassFromStatement(returnStatement, 'return');
                 if (className) {
                     return {
@@ -88,9 +94,8 @@ class PhpStormDIScriptsGenerator {
                         className
                     };
                 }
-            } else {
-                return null;
             }
+            return null;
         } else {
             return null;
         }
@@ -102,11 +107,7 @@ class PhpStormDIScriptsGenerator {
                 return map1.targetName.localeCompare(map2.targetName);
             })
             .map((mapping) => {
-                if (mapping.className.includes('Gh')) {
-                    return `"${mapping.targetName.toLowerCase()}" => \\${mapping.className}::class,`;
-                } else {
-                    return ''
-                }
+                return `"${mapping.targetName.toLowerCase()}" => \\${mapping.className}::class,`;
             })
             .filter(Boolean);
     }
