@@ -20,6 +20,7 @@ colors.setTheme({
 });
 
 const SERVICE_METHOD_NAME_REGEX = /^get(\w+)Service$/gi;
+const SERVICE_CLASS_NAME_REGEX = /^(\\|)Gh_Service_\w+$/;
 const DI_TARGET_CLASS = [
         'Gh_Controller_Action',
         'Gh_Service_Abstract',
@@ -50,14 +51,14 @@ class PhpStormDIScriptsGenerator {
         if (statementType === 'assign') {
             if (statement.expression.right.kind === 'call') {
                 const targetArgument = this.extractFromArrayByKind(statement.expression.right.arguments, 'string');
-                if (targetArgument && targetArgument.value.includes('Gh_Service')) {
+                if (targetArgument && SERVICE_CLASS_NAME_REGEX.test(targetArgument.value)) {
                     return targetArgument.value;
                 } else {
                     return null;
                 }
             } else if(statement.expression.right.kind === 'new') {
                 const classReference = statement.expression.right.what;
-                if(classReference && classReference.name.includes('Gh_Service')) {
+                if(classReference && SERVICE_CLASS_NAME_REGEX.test(classReference.name)) {
                     return classReference.name.replace('\\', '');
                 }
                 return null;
@@ -67,7 +68,7 @@ class PhpStormDIScriptsGenerator {
         } else if (statementType === 'return') {
             if(statement.expr.kind === 'new') {
                 const classReference = statement.expr.what;
-                if(classReference && classReference.name.includes('Gh_Service')) {
+                if(classReference && SERVICE_CLASS_NAME_REGEX.test(classReference.name)) {
                     return classReference.name.replace('\\', '');
                 }
                 return null;
