@@ -55,13 +55,27 @@ class PhpStormDIScriptsGenerator {
                 } else {
                     return null;
                 }
+            } else if(statement.expression.right.kind === 'new') {
+                const classReference = statement.expression.right.what;
+                if(classReference && classReference.name.includes('Gh_Service')) {
+                    return classReference.name.replace('\\', '');
+                }
+                return null;
             } else {
                 return null;
             }
         } else if (statementType === 'return') {
-            const targetArgument = this.extractFromArrayByKind(statement.expr.arguments || [], 'string');
-            if (targetArgument) {
-                return targetArgument.value;
+            if(statement.expr.kind === 'new') {
+                const classReference = statement.expr.what;
+                if(classReference && classReference.name.includes('Gh_Service')) {
+                    return classReference.name.replace('\\', '');
+                }
+                return null;
+            } else {
+                const targetArgument = this.extractFromArrayByKind(statement.expr.arguments || [], 'string');
+                if (targetArgument) {
+                    return targetArgument.value;
+                }
             }
         } else {
             return null;
