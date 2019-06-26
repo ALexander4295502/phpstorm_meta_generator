@@ -26,7 +26,8 @@ const DI_TARGET_CLASS = [
         'Gh_Service_Abstract',
         'Gh_SP_Abstract',
         'Gh\\Document\\Subscriber\\AbstractEventSubscriber',
-        'Gh\\Document\\Listener\\AbstractListener'
+        'Gh\\Document\\Listener\\AbstractListener',
+        'Gh\\Cli\\Command\\AbstractCommand'
     ];
 const DI_CONTAINER_FILE_PATH = '/Users/gethired/Desktop/GetHired/src/library/Gh/DependencyInjectionContainer.php';
 const PHPSTORM_META_FILE_PATH = '/Users/gethired/Desktop/GetHired/.phpstorm.meta.php/gh_services.meta.php';
