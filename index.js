@@ -10,7 +10,7 @@ const tintMap = {
     henryschein: '#666',
     thinkware: '#1d4a89',
     iconnect: '#275fac',
-    primepay: '#697819',
+    primepay: '#395f79',
     smartlinx: '#1391CB',
     gethired: '#0060CA',
     execupay: '#005892',
