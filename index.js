@@ -16,7 +16,7 @@ const tintMap = {
     execupay: '#005892',
     kellyway: '#0d553f',
     netpay: '#59ae26',
-    sage: '009FDA'
+    sage: '#009FDA'
 };
 
 
