@@ -1,6 +1,7 @@
 const tintMap = {
     ioi: '#024774',
     benefitmall: '#005892',
+    platinumhire: '#19549D',
     netchex: '#54a947',
     mpay: '#3883c0',
     bdb: '#201550',
@@ -16,7 +17,13 @@ const tintMap = {
     execupay: '#005892',
     kellyway: '#0d553f',
     netpay: '#59ae26',
-    sage: '#009FDA'
+    sage: '#009FDA',
+    cyberpay: '#7eb92b',
+    fisglobal: '#3883c0',
+    "937payroll": '#59ae26',
+    heartland: '#fce4e7',
+    maypaycenter: '#fce4e7',
+    viventium: '#824d9f'
 };
 
 
