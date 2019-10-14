@@ -5,7 +5,7 @@ const tintMap = {
     netchex: '#54a947',
     mpay: '#3883c0',
     bdb: '#201550',
-    jetpay: '#1253a5',
+    jetpay: '#4fba47',
     getbeyond: '#29455a',
     payworks: '#e0703d',
     henryschein: '#666',
