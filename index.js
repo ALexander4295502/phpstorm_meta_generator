@@ -1,6 +1,7 @@
 const tintMap = {
     ioi: '#024774',
-    benefitmall: '#005892',
+    adaptasoft: '#7EB92B',
+    benefitmall: '#94c947',
     platinumhire: '#19549D',
     netchex: '#54a947',
     mpay: '#3883c0',
@@ -23,40 +24,56 @@ const tintMap = {
     "937payroll": '#59ae26',
     heartland: '#fce4e7',
     maypaycenter: '#fce4e7',
-    viventium: '#824d9f'
+    viventium: '#824d9f',
+    clover: '#43B02A',
+    gethired: '#da281c',
 };
 
 
-const replaceColor = require('replace-color')
+const replaceColor = require('replace-color');
+const Jimp = require('jimp');
 
-Object.keys(tintMap).map((partner) => {
-    var replacedColor = tintMap[partner];
+(async () => {
+    const leftIcon = await Jimp.read('./arrow_left.png');
+    const rightIcon = await Jimp.read('./arrow_right.png');
 
-    replaceColor({
-        image: './collapse_wing.png',
-        colors: {
-            type: 'hex',
-            targetColor: '#da281c',
-            replaceColor: replacedColor
-        }
-    }, (err, jimpObject) => {
-        if (err) return console.log(err)
-        jimpObject.write(`./collapse_wing_${partner}.png`, (err) => {
-            if (err) return console.log(err)
+    Object.keys(tintMap).map((partner) => {
+        var replacedColor = tintMap[partner];
+
+        replaceColor({
+            image: './collapse_prototype.png',
+            colors: {
+                type: 'hex',
+                targetColor: '#da281c',
+                replaceColor: replacedColor
+            }
+        }, (err, jimpObject) => {
+            if (err) return console.log(err);
+            const savePath = partner === 'gethired'
+                ? `./collapse_wing.png`
+                : `./collapse_wing_${partner}.png`;
+
+            jimpObject.composite(leftIcon, 10, 21).write(savePath, (err) => {
+                if (err) return console.log(err)
+            });
         })
-    })
 
-    replaceColor({
-        image: './expand_wing.png',
-        colors: {
-            type: 'hex',
-            targetColor: '#da281c',
-            replaceColor: replacedColor
-        }
-    }, (err, jimpObject) => {
-        if (err) return console.log(err)
-        jimpObject.write(`./expand_wing_${partner}.png`, (err) => {
-            if (err) return console.log(err)
+        replaceColor({
+            image: './expand_prototype.png',
+            colors: {
+                type: 'hex',
+                targetColor: '#da281c',
+                replaceColor: replacedColor
+            }
+        }, (err, jimpObject) => {
+            if (err) return console.log(err);
+            const savePath = partner === 'gethired'
+                ? `./exapnd_wing.png`
+                : `./exapnd_wing_${partner}.png`;
+
+            jimpObject.composite(rightIcon, 10, 21).write(savePath, (err) => {
+                if (err) return console.log(err)
+            });
         })
-    })
-});
+    });
+})();
