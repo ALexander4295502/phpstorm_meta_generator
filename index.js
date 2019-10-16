@@ -4,7 +4,7 @@ const tintMap = {
     benefitmall: '#94c947',
     platinumhire: '#19549D',
     netchex: '#54a947',
-    mpay: '#3883c0',
+    mpay: '#F7901E',
     bdb: '#201550',
     jetpay: '#4fba47',
     getbeyond: '#29455a',
