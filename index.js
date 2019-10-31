@@ -20,7 +20,7 @@ const tintMap = {
     netpay: '#59ae26',
     sage: '#009FDA',
     cyberpay: '#7eb92b',
-    fisglobal: '#3883c0',
+    fisglobal: '#8DC63F',
     "937payroll": '#59ae26',
     heartland: '#DA291C',
     maypaycenter: '#fce4e7',
