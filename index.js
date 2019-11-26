@@ -27,6 +27,7 @@ const tintMap = {
     viventium: '#824d9f',
     clover: '#43B02A',
     gethired: '#da281c',
+    globalpayments: '#70A546',
 };
 
 
