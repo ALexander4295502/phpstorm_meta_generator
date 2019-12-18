@@ -28,6 +28,7 @@ const tintMap = {
     clover: '#43B02A',
     gethired: '#da281c',
     globalpayments: '#70A546',
+    myhrconcierge: '#FCD110',
 };
 
 
