@@ -26,7 +26,7 @@ const tintMap = {
     maypaycenter: '#fce4e7',
     viventium: '#824d9f',
     clover: '#43B02A',
-    gethired: '#da281c',
+    gethired: '#60CC9C',
     globalpayments: '#70A546',
     myhrconcierge: '#FCD110',
 };
