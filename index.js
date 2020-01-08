@@ -14,7 +14,6 @@ const tintMap = {
     iconnect: '#275fac',
     primepay: '#395f79',
     smartlinx: '#1391CB',
-    gethired: '#0060CA',
     execupay: '#005892',
     kellyway: '#0d553f',
     netpay: '#59ae26',
@@ -51,9 +50,7 @@ const Jimp = require('jimp');
             }
         }, (err, jimpObject) => {
             if (err) return console.log(err);
-            const savePath = partner === 'gethired'
-                ? `./collapse_wing.png`
-                : `./collapse_wing_${partner}.png`;
+            const savePath = `./collapse_wing_${partner}.png`;
 
             jimpObject.composite(leftIcon, 10, 21).write(savePath, (err) => {
                 if (err) return console.log(err)
@@ -69,9 +66,7 @@ const Jimp = require('jimp');
             }
         }, (err, jimpObject) => {
             if (err) return console.log(err);
-            const savePath = partner === 'gethired'
-                ? `./expand_wing.png`
-                : `./expand_wing_${partner}.png`;
+            const savePath = `./expand_wing_${partner}.png`;
 
             jimpObject.composite(rightIcon, 10, 21).write(savePath, (err) => {
                 if (err) return console.log(err)
